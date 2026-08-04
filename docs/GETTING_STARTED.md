@@ -79,6 +79,7 @@ Inside the `probation_ws` directory:
    ```
 
 > **What `colcon build` does:** Compiles your ROS2 packages in `src/` and generates the `build/`, `install/`, and `log/` workspace directories.
+> 
 > The container entrypoint automatically sources ROS2 and the workspace on every new shell — no manual `source` needed after the first build.
 
 ---
