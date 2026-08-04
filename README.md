@@ -17,9 +17,9 @@ This repository contains the probation task for autonomous gate navigation using
 
 See **[docs/GETTING_STARTED.md](docs/GETTING_STARTED.md)** for the full step-by-step setup guide (Ubuntu 24.04 via WSL2 → Git → Docker → Build).
 
-**Prequiste Apps to Download:**
-1. [**Unity Simulation**](https://github.com/NTU-Mecatron/probation_ws/releases/tag/v1.0.0) — the simulation environment (`UnitySim.exe`), runs on Windows
-2. [**Foxglove Studio**](https://foxglove.dev/download) — for monitoring vehicle state and topics visually
+**Prerequisites to Download (Installed & Run on Windows Host):**
+1. [**Unity Simulation**](https://github.com/NTU-Mecatron/probation_ws/releases/tag/v1.0.0) — the simulation environment (`UnitySim.exe`), downloaded and run on Windows.
+2. [**Foxglove Studio**](https://foxglove.dev/download) — for monitoring vehicle state and topics visually, installed and run on Windows.
 
 ## 2. Problem Statement
 
@@ -81,14 +81,20 @@ ros2 topic echo /mavros/state
 ```
 
 ### Step 4 — Run Your Solution
-Open a second terminal inside the container:
+Open a second Ubuntu terminal:
 ```bash
-docker compose exec dev-core bash
+cd ~/probation_ws
+docker compose run --rm dev-core bash
 ```
 Then run:
 ```bash
 ros2 run probation_bringup solution_template.py
 ```
+
+> **Tip:** If you create new Python scripts in `src/probation_bringup/scripts/`, ensure they have executable permissions:
+> ```bash
+> chmod +x src/probation_bringup/scripts/<script_name>.py
+> ```
 
 ## 5. Available Topics
 
