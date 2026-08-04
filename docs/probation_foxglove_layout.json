@@ -1,0 +1,821 @@
+{
+  "configById": {
+    "RosOut!1y5ta8x": {
+      "minLogLevel": 1,
+      "preload": true,
+      "searchTerms": [],
+      "nameFilter": {},
+      "fontSize": 10,
+      "showLevel": true,
+      "showDate": false,
+      "showTime": false,
+      "showTimezone": false,
+      "showName": true,
+      "showSourceLocation": false
+    },
+    "Plot!3xjlcu8": {
+      "paths": [
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/mavros/global_position/rel_alt.data",
+          "enabled": true,
+          "color": "#4e98e2",
+          "id": "rel-alt-depth-id",
+          "label": "Relative Altitude / Depth"
+        }
+      ],
+      "foxglovePanelTitle": "Depth (rel_alt)",
+      "showYAxisGridLines": true,
+      "showYAxisLabels": true
+    },
+    "Plot!208ygja": {
+      "paths": [
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/mavros/global_position/compass_hdg.data",
+          "enabled": true,
+          "color": "#5cd6a9",
+          "id": "compass-hdg-id",
+          "label": "Compass Heading"
+        }
+      ],
+      "foxglovePanelTitle": "Compass Heading",
+      "showLegend": true,
+      "showPlotValuesInLegend": false
+    },
+    "Plot!40fnfyz": {
+      "paths": [
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/mavros/setpoint_velocity/cmd_vel_unstamped.linear.x",
+          "enabled": true,
+          "color": "#4e98e2",
+          "id": "0b493cc9-c655-401f-997d-75f384aafdcc",
+          "label": "cmd/vx"
+        },
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/mavros/setpoint_velocity/cmd_vel_unstamped.linear.y",
+          "enabled": true,
+          "color": "#f5774d",
+          "id": "822173fd-2456-4fc1-bfea-af7e1d6f4329",
+          "label": "cmd/vy"
+        },
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/mavros/setpoint_velocity/cmd_vel_unstamped.linear.z",
+          "enabled": true,
+          "color": "#f7df71",
+          "id": "b636df7c-a629-490a-aad3-df000cf90676",
+          "label": "cmd/vz"
+        },
+        {
+          "timestampMethod": "receiveTime",
+          "value": "/mavros/setpoint_velocity/cmd_vel_unstamped.angular.z",
+          "enabled": true,
+          "color": "#5cd6a9",
+          "id": "0b70c645-3205-44b8-a87b-ed07493a723e",
+          "label": "cmd/vr"
+        }
+      ],
+      "foxglovePanelTitle": "Cmd Vel",
+      "showLegend": true
+    },
+    "RawMessages!40sntg1": {
+      "defaultExpanded": false,
+      "topicPath": "",
+      "fontSize": 10
+    },
+    "3D!2r4ix49": {
+      "cameraState": {
+        "perspective": false,
+        "distance": 5.688000922764485,
+        "phi": 5.729577951308232e-05,
+        "thetaOffset": -3.6875068649913643,
+        "targetOffset": [
+          0.39027814074771294,
+          -1.3171907721157912,
+          0
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "targetOrientation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "fovy": 45,
+        "near": 0.5,
+        "far": 5000
+      },
+      "followMode": "follow-position",
+      "scene": {
+        "transforms": {
+          "axisSize": 0.7,
+          "lineWidth": 0,
+          "labelSize": 0.3
+        },
+        "labelScaleFactor": 0.5,
+        "enableStats": false
+      },
+      "transforms": {
+        "frame:blue_flare/base_link_gt": {
+          "visible": false
+        },
+        "frame:blue_pail/base_link_gt": {
+          "visible": false
+        },
+        "frame:circle_waypoint_0": {
+          "visible": false
+        },
+        "frame:circle_waypoint_1": {
+          "visible": false
+        },
+        "frame:circle_waypoint_2": {
+          "visible": false
+        },
+        "frame:circle_waypoint_3": {
+          "visible": false
+        },
+        "frame:circle_waypoint_4": {
+          "visible": false
+        },
+        "frame:circle_waypoint_5": {
+          "visible": false
+        },
+        "frame:circle_waypoint_6": {
+          "visible": false
+        },
+        "frame:circle_waypoint_7": {
+          "visible": false
+        },
+        "frame:gate/base_link_gt": {
+          "visible": false
+        },
+        "frame:kevin/base_link_gt_gt": {
+          "visible": false
+        },
+        "frame:map_ned": {
+          "visible": false
+        },
+        "frame:base_link_frd": {
+          "visible": false
+        },
+        "frame:dvl_link": {
+          "visible": false
+        },
+        "frame:gimbal_link": {
+          "visible": false
+        },
+        "frame:rgb_camera_link": {
+          "visible": false
+        },
+        "frame:imu_link": {
+          "visible": false
+        },
+        "frame:base_link_gt": {
+          "visible": false
+        },
+        "frame:sensor_link": {
+          "visible": false
+        },
+        "frame:odom_ned": {
+          "visible": false
+        },
+        "frame:orange_flare/base_link_gt": {
+          "visible": false
+        },
+        "frame:rect_corner_A": {
+          "visible": false
+        },
+        "frame:rect_corner_B": {
+          "visible": false
+        },
+        "frame:rect_corner_C": {
+          "visible": false
+        },
+        "frame:rect_corner_D": {
+          "visible": false
+        },
+        "frame:red_flare/base_link_gt": {
+          "visible": false
+        },
+        "frame:red_pail/base_link_gt": {
+          "visible": false
+        },
+        "frame:yellow_flare/base_link_gt": {
+          "visible": false
+        },
+        "frame:camera_optical_frame": {
+          "visible": false
+        },
+        "frame:base_link": {
+          "visible": true
+        },
+        "frame:test_tf": {
+          "visible": true
+        },
+        "frame:rbg_camera_link": {
+          "visible": true
+        },
+        "frame:camera_down_optical_frame": {
+          "visible": false
+        },
+        "frame:uuv_hydra/base_link_gt": {
+          "visible": false
+        },
+        "frame:gate_area": {
+          "visible": true
+        },
+        "frame:flares": {
+          "visible": false
+        },
+        "frame:flare_area": {
+          "visible": false
+        },
+        "frame:pail_area": {
+          "visible": true
+        },
+        "frame:quali_after_gate": {
+          "visible": false
+        },
+        "frame:quali_before_gate": {
+          "visible": false
+        },
+        "frame:red_area": {
+          "visible": true
+        },
+        "frame:yellow_area": {
+          "visible": true
+        },
+        "frame:yellow_flare": {
+          "visible": true
+        },
+        "frame:blue_area": {
+          "visible": true
+        },
+        "frame:blue_pail": {
+          "visible": true
+        },
+        "frame:gate": {
+          "visible": true
+        },
+        "frame:gate_area_search_rescue": {
+          "visible": false
+        },
+        "frame:gate_area_survey_repair": {
+          "visible": false
+        },
+        "frame:torpedo_area": {
+          "visible": true
+        },
+        "frame:red_pole": {
+          "visible": true
+        },
+        "frame:white_pole": {
+          "visible": true
+        },
+        "frame:pool": {
+          "visible": false
+        },
+        "frame:map": {
+          "visible": true
+        },
+        "frame:white_pole_obstacle": {
+          "visible": false
+        },
+        "frame:torpedo_link": {
+          "visible": false
+        },
+        "frame:torpedo_link_left": {
+          "visible": false
+        },
+        "frame:torpedo_link_right": {
+          "visible": false
+        },
+        "frame:odom": {
+          "visible": false
+        },
+        "frame:dropper_link_left": {
+          "visible": false
+        },
+        "frame:dropper_link_right": {
+          "visible": false
+        },
+        "frame:bin_area": {
+          "visible": false
+        },
+        "frame:octagon_area": {
+          "visible": false
+        }
+      },
+      "topics": {
+        "/kevin/map": {
+          "visible": true,
+          "drawBehind": true,
+          "colorMode": "map",
+          "alpha": 0.1
+        },
+        "/kevin/plan": {
+          "visible": true,
+          "type": "axis"
+        },
+        "/kevin/global_costmap/costmap": {
+          "visible": false
+        },
+        "/kevin/global_costmap/static_layer": {
+          "visible": false
+        },
+        "/kevin/local_plan": {
+          "visible": true
+        }
+      },
+      "layers": {
+        "grid": {
+          "visible": true,
+          "drawBehind": false,
+          "label": "Grid",
+          "instanceId": "8aba284d-3522-4e9d-9feb-3f4056c300db",
+          "layerId": "foxglove.Grid",
+          "size": 20,
+          "divisions": 20,
+          "lineWidth": 1,
+          "color": "#248eff",
+          "position": [
+            0,
+            0,
+            0
+          ],
+          "rotation": [
+            0,
+            0,
+            0
+          ]
+        }
+      },
+      "publish": {
+        "type": "point",
+        "poseTopic": "/move_base_simple/goal",
+        "pointTopic": "/clicked_point",
+        "poseEstimateTopic": "/initialpose",
+        "poseEstimateXDeviation": 0.5,
+        "poseEstimateYDeviation": 0.5,
+        "poseEstimateThetaDeviation": 0.26179939
+      },
+      "imageMode": {},
+      "synchronize": false,
+      "followTf": "map",
+      "fixedFrame": "map"
+    },
+    "Image!170gk3n": {
+      "cameraState": {
+        "distance": 20,
+        "perspective": true,
+        "phi": 60,
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "targetOffset": [
+          0,
+          0,
+          0
+        ],
+        "targetOrientation": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "thetaOffset": 60,
+        "fovy": 45,
+        "near": 0.5,
+        "far": 5000
+      },
+      "followMode": "follow-pose",
+      "scene": {},
+      "transforms": {},
+      "topics": {},
+      "layers": {},
+      "publish": {
+        "type": "point",
+        "poseTopic": "/move_base_simple/goal",
+        "pointTopic": "/clicked_point",
+        "poseEstimateTopic": "/initialpose",
+        "poseEstimateXDeviation": 0.5,
+        "poseEstimateYDeviation": 0.5,
+        "poseEstimateThetaDeviation": 0.26179939
+      },
+      "imageMode": {
+        "imageTopic": "/main_camera/image_raw",
+        "overlayTopics": [],
+        "publish": {
+          "clickEnabled": false
+        },
+        "annotations": {
+          "/kevin/perception/depth/foxglove/annotations": {
+            "visible": true
+          },
+          "/kevin/perception/segment/foxglove/annotations": {
+            "visible": true
+          }
+        },
+        "rectifyImage": false,
+        "calibrationTopic": "/kevin/perception/camera_info"
+      },
+      "synchronize": false
+    },
+    "Indicator!44eryuu": {
+      "path": "/mavros/state.armed",
+      "style": "background",
+      "fallbackColor": "#ffed00",
+      "fallbackLabel": "DISARMED",
+      "rules": [
+        {
+          "operator": "=",
+          "rawValue": "true",
+          "color": "#7eff00",
+          "label": "ARMED"
+        },
+        {
+          "operator": "=",
+          "rawValue": "false",
+          "color": "#ff0000",
+          "label": "DISARMED"
+        }
+      ],
+      "foxglovePanelTitle": "System State",
+      "fontSize": 36
+    },
+    "Indicator!4fn5pt5": {
+      "path": "/mavros/state.mode",
+      "style": "background",
+      "fontSize": 36,
+      "fallbackColor": "#a0a0a0",
+      "fallbackLabel": "T",
+      "rules": [
+        {
+          "operator": ">=",
+          "rawValue": "77.0",
+          "color": "#ff0000",
+          "label": "T"
+        },
+        {
+          "operator": ">=",
+          "rawValue": "68.0",
+          "color": "#ffed00",
+          "label": "T"
+        },
+        {
+          "operator": ">=",
+          "rawValue": "30.0",
+          "color": "#7eff00",
+          "label": "T"
+        }
+      ],
+      "foxglovePanelTitle": " "
+    },
+    "RawMessages!1g1y7wu": {
+      "defaultExpanded": false,
+      "topicPath": "/mavros/state.mode",
+      "diffEnabled": false
+    },
+    "Indicator!2hu9vcv": {
+      "path": "/mavros/state.mode",
+      "style": "background",
+      "fallbackColor": "#a0a0a0",
+      "fallbackLabel": "-",
+      "rules": [
+        {
+          "operator": "=",
+          "rawValue": "GUIDED",
+          "color": "#7eff00",
+          "label": "GUIDED"
+        },
+        {
+          "operator": "=",
+          "rawValue": "ALT_HOLD",
+          "color": "#00d3ff",
+          "label": "DEPTH_HOLD"
+        },
+        {
+          "operator": "=",
+          "rawValue": "STABILIZE",
+          "color": "#bc23b6",
+          "label": "STABILIZE"
+        },
+        {
+          "operator": "=",
+          "rawValue": "ACRO",
+          "color": "#ff0000",
+          "label": "ACRO"
+        },
+        {
+          "operator": "=",
+          "rawValue": "MANUAL",
+          "color": "#ffed00",
+          "label": "MANUAL"
+        }
+      ],
+      "foxglovePanelTitle": "Flight Mode",
+      "fontSize": 36
+    },
+    "Indicator!2kqnc6s": {
+      "path": "/mavros/state.connected",
+      "style": "background",
+      "fontSize": 36,
+      "fallbackColor": "#a0a0a0",
+      "fallbackLabel": "GPU",
+      "rules": [
+        {
+          "operator": ">=",
+          "rawValue": "99.85",
+          "color": "#ff0000",
+          "label": "GPU"
+        },
+        {
+          "operator": ">=",
+          "rawValue": "90.0",
+          "color": "#ffed00",
+          "label": "GPU"
+        },
+        {
+          "operator": ">=",
+          "rawValue": "1.0",
+          "color": "#7eff00",
+          "label": "GPU"
+        }
+      ],
+      "foxglovePanelTitle": " "
+    },
+    "RawMessages!2gpu4kx": {
+      "defaultExpanded": false,
+      "topicPath": "/mavros/state.connected",
+      "diffEnabled": false
+    },
+    "CallService!2isfbn7": {
+      "requestPayload": "{\n  \"value\": true\n}",
+      "layout": "vertical",
+      "timeoutSeconds": 10,
+      "serviceName": "/mavros/cmd/arming",
+      "buttonText": "ARM",
+      "editingMode": false,
+      "buttonColor": "#7eff00",
+      "foxglovePanelTitle": " ",
+      "serviceType": "mavros_msgs/CommandBool"
+    },
+    "CallService!23t3xzd": {
+      "requestPayload": "{\n  \"value\": false\n}",
+      "layout": "vertical",
+      "timeoutSeconds": 10,
+      "serviceName": "/mavros/cmd/arming",
+      "buttonText": "DISARM",
+      "editingMode": false,
+      "buttonColor": "#ff0000",
+      "foxglovePanelTitle": " ",
+      "serviceType": "mavros_msgs/CommandBool"
+    },
+    "CallService!mtmn08": {
+      "requestPayload": "{\n  \"base_mode\": 0,\n  \"custom_mode\": \"MANUAL\"\n}",
+      "layout": "vertical",
+      "timeoutSeconds": 10,
+      "serviceName": "/mavros/set_mode",
+      "buttonText": "MANUAL",
+      "editingMode": false,
+      "foxglovePanelTitle": " ",
+      "serviceType": "mavros_msgs/SetMode"
+    },
+    "CallService!1e6an30": {
+      "requestPayload": "{\n  \"base_mode\": 0,\n  \"custom_mode\": \"ALT_HOLD\"\n}",
+      "layout": "vertical",
+      "timeoutSeconds": 10,
+      "serviceName": "/mavros/set_mode",
+      "buttonText": "DEPTH_HOLD",
+      "editingMode": false,
+      "foxglovePanelTitle": " ",
+      "serviceType": "mavros_msgs/SetMode"
+    },
+    "CallService!2gob1u2": {
+      "requestPayload": "{\n  \"base_mode\": 0,\n  \"custom_mode\": \"STABILIZE\"\n}",
+      "layout": "vertical",
+      "timeoutSeconds": 10,
+      "serviceName": "/mavros/set_mode",
+      "buttonText": "STABILIZE",
+      "editingMode": false,
+      "foxglovePanelTitle": " ",
+      "serviceType": "mavros_msgs/SetMode"
+    },
+    "CallService!k7lonh": {
+      "requestPayload": "{\n  \"base_mode\": 0,\n  \"custom_mode\": \"GUIDED\"\n}",
+      "layout": "vertical",
+      "timeoutSeconds": 10,
+      "serviceName": "/mavros/set_mode",
+      "buttonText": "GUIDED",
+      "editingMode": false,
+      "buttonColor": "#6f00ff",
+      "foxglovePanelTitle": " ",
+      "serviceType": "mavros_msgs/SetMode"
+    },
+    "Tab!3y3lrm": {
+      "tabs": [
+        {
+          "title": "Main",
+          "layout": {
+            "direction": "column",
+            "first": "RosOut!1y5ta8x",
+            "second": {
+              "direction": "row",
+              "first": "Plot!3xjlcu8",
+              "second": {
+                "first": "Plot!208ygja",
+                "second": "Plot!40fnfyz",
+                "direction": "column"
+              },
+              "splitPercentage": 40.0
+            },
+            "splitPercentage": 60.0
+          }
+        },
+        {
+          "title": "Raw Messages",
+          "layout": "RawMessages!40sntg1"
+        }
+      ],
+      "activeTabIdx": 0
+    },
+    "Tab!3dmainvw": {
+      "activeTabIdx": 0,
+      "tabs": [
+        {
+          "title": "Task Gate",
+          "layout": {
+            "direction": "column",
+            "first": "3D!2r4ix49",
+            "second": {
+              "direction": "row",
+              "first": "Image!170gk3n",
+              "second": "RawMessages!bounding_boxes",
+              "splitPercentage": 50.0
+            },
+            "splitPercentage": 60.0
+          }
+        }
+      ]
+    },
+    "Tab!25yhqwg": {
+      "activeTabIdx": 0,
+      "tabs": [
+        {
+          "title": "AUV Monitor",
+          "layout": {
+            "direction": "column",
+            "first": {
+              "direction": "column",
+              "first": {
+                "first": "Indicator!44eryuu",
+                "second": {
+                  "first": "Indicator!4fn5pt5",
+                  "second": "RawMessages!1g1y7wu",
+                  "direction": "row",
+                  "splitPercentage": 40.0
+                },
+                "direction": "row",
+                "splitPercentage": 50.0
+              },
+              "second": {
+                "direction": "column",
+                "first": {
+                  "first": "Indicator!2hu9vcv",
+                  "second": {
+                    "first": "Indicator!2kqnc6s",
+                    "second": "RawMessages!2gpu4kx",
+                    "direction": "row",
+                    "splitPercentage": 40.0
+                  },
+                  "direction": "row",
+                  "splitPercentage": 50.0
+                },
+                "second": {
+                  "direction": "column",
+                  "first": {
+                    "first": "CallService!2isfbn7",
+                    "second": "CallService!23t3xzd",
+                    "direction": "row",
+                    "splitPercentage": 50.0
+                  },
+                  "second": {
+                    "direction": "column",
+                    "first": {
+                      "first": "CallService!mtmn08",
+                      "second": "CallService!1e6an30",
+                      "direction": "row",
+                      "splitPercentage": 50.0
+                    },
+                    "second": {
+                      "first": "CallService!2gob1u2",
+                      "second": "CallService!k7lonh",
+                      "direction": "row",
+                      "splitPercentage": 50.0
+                    },
+                    "splitPercentage": 50.0
+                  },
+                  "splitPercentage": 33.333333333333336
+                },
+                "splitPercentage": 20.0
+              },
+              "splitPercentage": 16.666666666666668
+            },
+            "second": {
+              "direction": "row",
+              "first": "Teleop!forward_yaw",
+              "second": "Teleop!vertical_strafe",
+              "splitPercentage": 50.0
+            },
+            "splitPercentage": 60.0
+          }
+        }
+      ]
+    },
+    "Teleop!forward_yaw": {
+      "topic": "/mavros/setpoint_velocity/cmd_vel_unstamped",
+      "publishRate": 10,
+      "upDownTopic": "",
+      "foxglovePanelTitle": "Forward & Yaw",
+      "autoSendStopOnRelease": true,
+      "upButton": {
+        "field": "linear-x",
+        "value": 0.5
+      },
+      "downButton": {
+        "field": "linear-x",
+        "value": -0.5
+      },
+      "leftButton": {
+        "field": "angular-z",
+        "value": 0.3
+      },
+      "rightButton": {
+        "field": "angular-z",
+        "value": -0.3
+      },
+      "stopButton": {
+        "field": "linear-x",
+        "value": 0
+      }
+    },
+    "Teleop!vertical_strafe": {
+      "topic": "/mavros/setpoint_velocity/cmd_vel_unstamped",
+      "publishRate": 10,
+      "upDownTopic": "",
+      "foxglovePanelTitle": "Up Down & Sideways",
+      "autoSendStopOnRelease": true,
+      "upButton": {
+        "field": "linear-z",
+        "value": 0.2
+      },
+      "downButton": {
+        "field": "linear-z",
+        "value": -0.2
+      },
+      "leftButton": {
+        "field": "linear-y",
+        "value": 0.5
+      },
+      "rightButton": {
+        "field": "linear-y",
+        "value": -0.5
+      },
+      "stopButton": {
+        "field": "linear-x",
+        "value": 0
+      }
+    },
+    "RawMessages!bounding_boxes": {
+      "topicPath": "/main_camera/detection/bounding_boxes",
+      "defaultExpanded": true,
+      "diffEnabled": false,
+      "foxglovePanelTitle": "Camera Bounding Boxes (Detections)"
+    }
+  },
+  "globalVariables": {},
+  "userNodes": {},
+  "playbackConfig": {
+    "speed": 1
+  },
+  "layout": {
+    "direction": "row",
+    "first": "Tab!3y3lrm",
+    "second": {
+      "direction": "row",
+      "first": "Tab!3dmainvw",
+      "second": "Tab!25yhqwg",
+      "splitPercentage": 50.0
+    },
+    "splitPercentage": 40.0
+  }
+}
