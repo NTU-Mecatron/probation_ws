@@ -19,7 +19,7 @@ See **[docs/GETTING_STARTED.md](docs/GETTING_STARTED.md)** for the full step-by-
 
 **Prerequisites to Download (Installed & Run on Windows Host):**
 1. [**Unity Simulation**](https://github.com/NTU-Mecatron/probation_ws/releases/tag/v1.0.0) — the simulation environment (`UnitySim.exe`), downloaded and run on Windows.
-2. [**Foxglove Studio**](https://foxglove.dev/download) — for monitoring vehicle state and topics visually, installed and run on Windows.
+2. [**Foxglove Studio**](https://foxglove.dev/download) — for monitoring vehicle state and topics visually. See **[docs/FOXGLOVE_SETUP.md](docs/FOXGLOVE_SETUP.md)** for connection and layout import instructions.
 
 ## 2. Problem Statement
 
@@ -65,7 +65,7 @@ ros2 launch probation_bringup probation.launch.py
 
 This starts two processes:
 - **ROS-TCP-Endpoint** on port `10000` — the Unity simulation connects to this.
-- **Foxglove Bridge** on port `8765` — open Foxglove Studio and connect to `ws://localhost:8765`.
+- **Foxglove Bridge** on port `8765` — open Foxglove Studio, connect to `ws://localhost:8765`, and import **[docs/probation_foxglove_layout.json](docs/probation_foxglove_layout.json)** (see **[docs/FOXGLOVE_SETUP.md](docs/FOXGLOVE_SETUP.md)**).
 
 ### Step 2 — Start the Unity Simulation
 Launch `UnitySim.exe` on your Windows host. Once it connects, you will see topics appear in ROS2.
