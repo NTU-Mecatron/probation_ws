@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-# Source ROS 2 underlay
+# Source ROS2 underlay
 source "/opt/ros/jazzy/setup.bash"
 
 # Source probation_ws overlay if built
