@@ -1,0 +1,17 @@
+# Reset ROS2 prefix environment variables
+unset AMENT_PREFIX_PATH
+unset CMAKE_PREFIX_PATH
+unset COLCON_PREFIX_PATH
+
+# Source ROS2 and probation_ws
+source /opt/ros/jazzy/setup.bash
+if [ -f ~/probation_ws/install/local_setup.bash ]; then
+  source ~/probation_ws/install/local_setup.bash
+fi
+
+# Prettify ros log output
+export RCUTILS_COLORIZED_OUTPUT=1
+export RCUTILS_CONSOLE_OUTPUT_FORMAT='[{name}]: {message}'
+
+# Colcon autocomplete
+source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash

@@ -1,0 +1,29 @@
+x-common-config: &common-config
+  stdin_open: true
+  tty: true
+  network_mode: host
+  ipc: host
+  environment:
+    - TZ=${TZ:-Asia/Singapore}
+    - USE_SIM_TIME=${USE_SIM_TIME:-false}
+  volumes:
+    - .:/home/mecatron/probation_ws
+    - /dev/shm:/dev/shm
+  entrypoint: [scripts/entrypoint.sh]
+
+x-core-config: &core-config
+  <<: *common-config
+  build:
+    context: .
+    dockerfile: ./docker/probation.dockerfile
+    args:
+      USERNAME: mecatron
+  image: probation_software:latest
+  hostname: probation-container
+
+services:
+  # Development service for probation task
+  dev-core:
+    <<: *core-config
+    container_name: probation-container
+    working_dir: /home/mecatron/probation_ws
