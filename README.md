@@ -1,192 +1,215 @@
-# Probation Task: Going Through Gate with Unity Simulation
+# Probation Task: Autonomous Gate Navigation with Unity Simulation
 
-This repository contains the probation task, focusing on autonomous gate navigation using Unity simulation integrated with ROS 2.
+This repository contains the probation task for autonomous gate navigation using ROS2 and a Unity simulation.
 
-**You should NOT clone this repository from Mecatron github organization directly.** Instead, you should **fork** this repository to your own github and clone from it *(Please ask ChatGPT how to fork a github repository if you are unsure)*. After you fork and clone the repository, you should be on branch `probation/task`. If you are not on this branch, please switch to it using:
-```bash
-git checkout probation/task
-```
+> **You should NOT clone this repository directly from the Mecatron GitHub organisation.**
+> 
+> Instead, **fork** this repository to your own GitHub account and clone from it. *(Please ask ChatGPT how to fork a github repository if you are unsure)*.
+> After cloning, ensure you are on the `probation/task` branch:
+> ```bash
+> git checkout probation/task
+> ```
+> Implement your solution in this branch `probation/task` in either Python or C++ and send us the link to your forked repository once completed.
 
-You are supposed to implement your solution in this branch `probation/task` in either Python or C++. After you finish the task, please send us the link to your forked repository.
+## 1. Getting Started
 
-## 1. Problem Statement
+> We use `ROS2 Jazzy + Ubuntu 24.04` for all development. The environment is fully Dockerized (Native installation is not encouraged).
 
-**Task Goal**: Navigate an autonomous underwater vehicle (AUV) through a gate in a simulated environment.
+See **[docs/GETTING_STARTED.md](docs/GETTING_STARTED.md)** for the full step-by-step setup guide (Ubuntu 24.04 via WSL2 → Git → Docker → Build).
+
+**Prequiste Apps to Download:**
+1. [**Unity Simulation**](https://github.com/NTU-Mecatron/probation_ws/releases/tag/v1.0.0) — the simulation environment (`UnitySim.exe`), runs on Windows
+2. [**Foxglove Studio**](https://foxglove.dev/download) — for monitoring vehicle state and topics visually
+
+## 2. Problem Statement
+
+**Task Goal**: Navigate an Autonomous Underwater Vehicle (AUV) through a gate in a simulated underwater environment.
 
 **Learning Objectives**:
-- Working with a simulation using ROS2
-- Process object detection data for meaningful insights
-- Develop autonomous decision-making and control algorithms
-- Manage a relatively large projects with many processes and nodes.
+- Working with a robot simulator using ROS2
+- Processing object detection data to extract meaningful information
+- Developing autonomous decision-making and control algorithms
+- Managing a project with multiple concurrent processes and nodes
 
 **Success Criteria**:
-- The vehicle navigates autonomously through the gate 3 times, at 3 different random initial positions.
+- The vehicle navigates autonomously through the gate **3 times**, at **3 different random initial positions**.
 
-## 2. Setup and Dependencies
+## 3. Workspace Structure
 
-### Workspace Structure
 ```
 probation_ws/
 ├── src/
-│   ├── ROS-TCP-Endpoint/          # Unity-ROS bridge
+│   ├── ROS-TCP-Endpoint/               # Unity-ROS2 communication bridge
+│   ├── probation_bringup/              # Launch, config, and your solution scripts
+│   │   ├── launch/
+│   │   │   └── probation.launch.py     # <-- Main launch file for the simulation
+│   │   └── scripts/
+│   │       └── solution_template.py    # <-- Start here: implement your solution
 │   └── vision/
-│       └── vision_msgs/           # Custom message definitions
+│       └── vision_msgs/                # Custom message definitions for bounding boxes
 ```
 
-### Key Components
+## 4. Running the Simulation
 
-- **[ROS-TCP-Endpoint](src/ROS-TCP-Endpoint)**: Bridge between Unity simulation and ROS 2
-- **[vision_msgs](src/vision/vision_msgs)**: Custom message types for bounding box data
-  - [`BoundingBox.msg`](src/vision/vision_msgs/msg/BoundingBox.msg): Single detection with bounding box information (x, y, w, h), confidence, label name and label id.
-
-    ![Image of BoundingBox](docs/images/bounding_box_description.png)
-
-  - [`BoundingBoxArray.msg`](src/vision/vision_msgs/msg/BoundingBoxArray.msg): Array of detections with header
-
-### Prerequisites
-
-1. **ROS 2 Humble** - Full desktop installation
-2. **MAVROS** - For vehicle communication and control
-   ```bash
-   sudo apt install ros-$ROS_DISTRO-mavros
-   ```
-3. **Unity Simulation** - Provided simulation environment
-4. **Foxglove Bridge** - For monitoring various states of the vehicle
-   ```bash
-   sudo apt install ros-$ROS_DISTRO-foxglove-bridge
-   ```
-
-### Installation
-
-0. Fork the repository to your own github account.
-
-1. Clone and build the workspace:
-   ```bash
-   cd ~
-   git clone your_forked_repo_url
-   cd probation_ws
-   colcon build --symlink-install
-   source install/local_setup.bash
-   ```
-
-2. Additional setup:
-
-   To avoid repeatedly sourcing the workspace, you may run the following command to add source to `~/.bashrc` file:
-   ```bash
-   echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
-   echo "source ~/probation_ws/install/local_setup.bash" >> ~/.bashrc
-   ```
-
-If you are unsure about how to run your ROS2 implementation with Unity simulation, please refer to the [Appendix 5.2](#52-proper-setup-flow) for a proper setup flow.
-
-## 3. Things to Note About the Simulation
-
-### Simulation Characteristics
-
-- **Random Initial Position**: The vehicle spawns at a random location and orientation
-- **Imperfect Detection**: Objects are only detected approximately 70% of the time
-- **Flight Mode Requirement**: Vehicle must be in GUIDED mode for autonomous control via topics. To switch back to control by keyboard, set mode to `ALT_HOLD`.
-
-### Vision System
-
-- Bounding boxes are published from Unity simulation with message type [`vision_msgs/BoundingBoxArray`](src/vision/vision_msgs/msg/BoundingBoxArray.msg)
-- Coordinates are normalized (0.0-1.0) relative to image frame
-
-## 4. Suggested Logic Build-up
-
-To support your implementation, here is a suggested logic flow:
-
-1. Implement client to change vehicle to GUIDED mode
-2. Move down until reaching target depth for gate visibility
-3. Implement search pattern to locate gate
-4. Center the gate and moving forward to approach
-5. Go straight through the gate
-
-The logic flow above is one of many possible solutions. Feel free to explore and implement your own strategies.
-
-> **NOTE:**
-> The vehicle's initial position may sometimes face obstacles. If this occurs, please refer the [Appendix 5.1](#51-obstacle-avoidance-note) for more details.
-
-## 5. Appendix
-
-### 5.1. Obstacle Avoidance Note
-
-In the gate area of the simulation, there is a orange flare in front of the gate which acts as an obstacle. In this case, you may choose to implement obstacle avoidance logic if you wish, and of course it would be a bonus point. However, it is not a requirement for the probation task. 
-
-If you choose not to implement obstacle avoidance, you may reset the simulation if the vehicle's initial position faces an obstacle.
-
-> **NOTE:**  
-> We advise you to focus on the main task, which is to go through the gate without obstacle avoidance.  If there is time left, you may then implement obstacle avoidance logic.
-
-### 5.2. Proper Setup Flow
-
-To set up and run the simulation with ROS2 properly, follow these steps before starting your implementation:
-
-1. **Build Workspace**:
-   ```bash
-   cd probation_ws
-   colcon build
-   source install/setup.bash
-   ```
-
-2. **Start ROS TCP Endpoint**:
-   ```bash
-   ros2 run ros_tcp_endpoint default_server_endpoint
-   ```
-   The endpoint will start on `0.0.0.0:10000` by default.
-
-3. **Launch Unity Simulation**:
-   - Open the Unity simulation project. If you have not installed the simulation, please refer to our workshop notion page for the download link:
-        [Notion Page](https://mecatron.notion.site/ros2)
-   - Start the simulation
-
-4. **Verify Communication**:
-   ```bash
-   # Check available topics
-   ros2 topic list
-   
-   # Check MAVROS connection
-   ros2 topic echo /mavros/state
-   ```
-
-5. You may now start your ROS2 implementation to control the vehicle.
-
-### 5.3. Notes to Avoid Confusion
-#### Publishers
-
-In the workshop on Saturday, when working on the `minimal_publisher.py` file, we created a timer to call the timer_callback function every `0.5` seconds. The function publishes a `Float32` message with a value of `0.5` to the topic `/mavros/setpoint_velocity/cmd_vel_unstamped/x` at line 18, by:
-```python
-self.publisher_.publish(msg)
-```
-
-**Important Notes:**
-
-* In order to publish, you don't need to have a timer
-* You can call it anywhere: in a subscriber callback, service callback, or even in the class constructor (__init__).
-* The timer is just a convenient way to call a function periodically.
-
-### 5.4. Useful Reference
-
-#### Useful commands
+Enter the container first (every time you open a new Ubuntu terminal):
 ```bash
-# Monitor system status
-ros2 topic echo /mavros/state
+cd ~/probation_ws
+docker compose run --rm dev-core bash
+```
 
-# Check available topics, services
+### Step 1 — Launch the ROS2 Bridge
+Inside your Docker container (or native terminal), run:
+```bash
+ros2 launch probation_bringup probation.launch.py
+```
+
+This starts two processes:
+- **ROS-TCP-Endpoint** on port `10000` — the Unity simulation connects to this.
+- **Foxglove Bridge** on port `8765` — open Foxglove Studio and connect to `ws://localhost:8765`.
+
+### Step 2 — Start the Unity Simulation
+Launch `UnitySim.exe` on your Windows host. Once it connects, you will see topics appear in ROS2.
+
+### Step 3 — Verify the Connection
+In a second terminal inside the container:
+```bash
+# Check that simulation topics are visible
+ros2 topic list
+
+# Verify vehicle state is being published
+ros2 topic echo /mavros/state
+```
+
+### Step 4 — Run Your Solution
+Open a second terminal inside the container:
+```bash
+docker compose exec dev-core bash
+```
+Then run:
+```bash
+ros2 run probation_bringup solution_template.py
+```
+
+## 5. Available Topics
+
+Use these commands to explore any topic yourself:
+```bash
+ros2 topic info <topic>               # See the message type
+ros2 interface show <message_type>    # See all fields of a message type
+ros2 topic echo <topic>               # Print live data
+```
+
+| Topic                                         | Message Type                   | Description                                    |
+| --------------------------------------------- | ------------------------------ | ---------------------------------------------- |
+| `/main_camera/detection/bounding_boxes`       | `vision_msgs/BoundingBoxArray` | Gate detection from the front camera           |
+| `/mavros/global_position/compass_hdg`         | `std_msgs/Float64`             | Current heading in degrees (0–360)             |
+| `/mavros/global_position/rel_alt`             | `std_msgs/Float64`             | Current depth/altitude in meters               |
+| `/mavros/setpoint_velocity/cmd_vel_unstamped` | `geometry_msgs/Twist`          | **Send velocity commands to move the vehicle** |
+| `/mavros/state`                               | `mavros_msgs/State`            | Vehicle armed/mode status                      |
+
+### Bounding Box Format
+
+The camera publishes all detected objects as a [`BoundingBoxArray`](src/vision/vision_msgs/msg/BoundingBoxArray.msg). Each [`BoundingBox`](src/vision/vision_msgs/msg/BoundingBox.msg) contains:
+
+![BoundingBox description](docs/images/bounding_box_description.png)
+
+| Field        | Type   | Description                                                         |
+| ------------ | ------ | ------------------------------------------------------------------- |
+| `x`          | float  | Horizontal center (0.0 = left edge, 0.5 = center, 1.0 = right edge) |
+| `y`          | float  | Vertical center (0.0 = top edge, 0.5 = center, 1.0 = bottom edge)   |
+| `w`          | float  | Width of bounding box (normalized 0.0–1.0)                          |
+| `h`          | float  | Height of bounding box (normalized 0.0–1.0)                         |
+| `conf`       | float  | Detection confidence (0.0–1.0)                                      |
+| `label_id`   | int    | Numeric class ID of the detected object                             |
+| `label_name` | string | String class name of the detected object                            |
+
+### Velocity Command Format
+
+To move the vehicle, publish a `geometry_msgs/Twist` message:
+
+```
+linear.x  — forward (+) / backward (−)     [m/s]
+linear.y  — strafe right (+) / left (−)    [m/s]
+linear.z  — up (+) / down (−)              [m/s]
+angular.z — yaw left/CCW (+) / right/CW (−)[rad/s]
+```
+
+## 6. Simulation Characteristics
+
+- **Random Initial Position**: The vehicle spawns at a random location and orientation on each run.
+- **Imperfect Detection**: The object detector does not detect the gate 100% of the time. Your solution should handle frames where no detection is received.
+- **GUIDED Mode Required**: The vehicle must be in `GUIDED` flight mode to accept velocity commands from ROS2. Without this, all published commands are ignored.
+
+## 7. Where to Start
+
+Open [`src/probation_bringup/scripts/solution_template.py`](src/probation_bringup/scripts/solution_template.py).
+
+It contains a clean ROS2 node skeleton to start building your solution.
+
+> Reference ROS2 code examples (publishers, subscribers, clients, services) are available under [`docs/help/`](docs/help/).
+
+**Suggested progression**:
+1. Set the vehicle to `GUIDED` mode via the service client.
+2. Subscribe to sensor topics and log what you receive.
+3. Send a simple constant velocity and watch the vehicle move.
+4. Implement closed-loop control using sensor feedback to navigate through the gate.
+
+> Refer to [Section 8](#8-appendix) for useful commands and links.
+
+## 8. Appendix
+
+### 8.1 Suggested Logic
+
+One possible approach — there are many valid solutions:
+
+1. Set vehicle to `GUIDED` mode
+2. Descend to a depth where the gate is likely visible
+3. Implement a search pattern to find the gate
+4. Align laterally and in heading with the gate center
+5. Drive forward through the gate
+
+### 8.2 Obstacle Avoidance Note
+
+The gate area contains an orange flare that may appear as an obstacle. If the vehicle's initial position faces this obstacle:
+- You may implement obstacle avoidance for bonus points (not required).
+- Alternatively, you may reset the simulation and try a new spawn.
+
+Focus on the gate navigation first. Obstacle avoidance is optional.
+
+### 8.3 Useful Commands
+
+```bash
+# Check available topics and services
 ros2 topic list
 ros2 service list
 
-# Set vehicle mode
+# Inspect message types
+ros2 interface show vision_msgs/msg/BoundingBox
+ros2 interface show geometry_msgs/msg/Twist
+ros2 interface show mavros_msgs/srv/SetMode
+
+# Monitor live data
+ros2 topic echo /main_camera/detection/bounding_boxes
+ros2 topic echo /mavros/global_position/compass_hdg
+ros2 topic echo /mavros/global_position/rel_alt
+
+# Set vehicle mode manually (useful for testing)
 ros2 service call /mavros/set_mode mavros_msgs/srv/SetMode "{base_mode: 0, custom_mode: 'GUIDED'}"
 
+# Switch back to manual keyboard control
+ros2 service call /mavros/set_mode mavros_msgs/srv/SetMode "{base_mode: 0, custom_mode: 'ALT_HOLD'}"
+
+# Verify your velocity commands are being published
+ros2 topic echo /mavros/setpoint_velocity/cmd_vel_unstamped
+ros2 topic hz /mavros/setpoint_velocity/cmd_vel_unstamped
 ```
 
-#### Useful links
+### 8.4 Useful Links
 
-- [ROS2 Official Tutorials](https://docs.ros.org/en/humble/Tutorials.html)
+- [ROS2 Jazzy Tutorials](https://docs.ros.org/en/jazzy/Tutorials.html)
+- [geometry_msgs/Twist](https://docs.ros2.org/latest/api/geometry_msgs/msg/Twist.html)
+- [MAVROS Wiki](https://wiki.ros.org/mavros)
 
 ---
 
-**Good luck with your probation task!** Focus on understanding the integration between simulation, vision processing, and vehicle control. The key is building a robust system that handles the imperfect nature of real-world sensing and control.
-
-
+**Good luck!** The key is building a system that handles imperfect sensing robustly. Start simple, iterate, and test frequently.
