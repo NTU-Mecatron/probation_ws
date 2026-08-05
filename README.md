@@ -135,7 +135,7 @@ To move the vehicle, publish a `geometry_msgs/Twist` message:
 
 ```
 linear.x  — forward (+) / backward (−)     [m/s]
-linear.y  — strafe right (+) / left (−)    [m/s]
+linear.y  — strafe left (+) / right (−)    [m/s]
 linear.z  — up (+) / down (−)              [m/s]
 angular.z — yaw left/CCW (+) / right/CW (−)[rad/s]
 ```
